@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\VerifiesEmails;
+use App\Models\User;
+use Illuminate\Support\Facades\Redirect;
 
 class VerificationController extends Controller
 {
@@ -27,8 +29,15 @@ class VerificationController extends Controller
      * @var string
      */
 
-        public function index () {
-            dd('dssdsd');
+        public function index (int $id) {
+
+            $user = User::findorFail($id);
+            if(!$user->hasVerifiedEmail()){
+                $user->markEmailAsVerified();
+                toastr()->success('My name is Inigo Montoya. You killed my father, prepare to die!');
+            }
+            
+            return Redirect::to('/login');
         }
 
 

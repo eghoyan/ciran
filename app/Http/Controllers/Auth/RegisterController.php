@@ -87,7 +87,7 @@ class RegisterController extends Controller
             $resultalt =$this->create($request->all());
 
             if ($resultalt) {
-                Mail::to($resultalt->email)->send(new ConfirmEmail($request->all()));
+                Mail::to($resultalt->email)->send(new ConfirmEmail($resultalt));
                 return Redirect::to(route('home'));
             }
         }
