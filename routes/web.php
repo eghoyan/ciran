@@ -12,12 +12,24 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::group(['middleware'=>['notlogin']], function(){
 
-Route::get('/confirm/{id}', [App\Http\Controllers\Auth\VerificationController::class, 'index'])->name('confirm');
-Route::get('/', function () {
-    return view('welcome');
+	Route::get('/confirm/{id}', [App\Http\Controllers\Auth\VerificationController::class, 'index'])->name('confirm');
+	Route::get('/', function () {
+	    return view('welcome');
+	});
+
+});
+	Auth::routes();
+
+
+Route::group(['prefix' => 'admin','namespace' => 'Admin','as'=>'admin.','middleware'=>['admin']], function(){
+
+	Route::get('/home', [App\Http\Controllers\Admin\HomeController::class, 'index'])->name('home');
 });
 
-Auth::routes();
+Route::group(['namespace' => 'User','as'=>'user.','middleware'=>['user']], function(){
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+	Route::get('/home', [App\Http\Controllers\User\HomeController::class, 'index'])->name('home');
+});
+
