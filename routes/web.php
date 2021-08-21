@@ -39,5 +39,10 @@ Route::group(['prefix' => 'admin','namespace' => 'Admin','as'=>'admin.','middlew
 Route::group(['namespace' => 'User','as'=>'user.','middleware'=>['user']], function(){
 
 	Route::get('/home', [App\Http\Controllers\User\HomeController::class, 'index'])->name('home');
+
+	Route::get('/product', [App\Http\Controllers\User\ProductController::class, 'index'])->name('product');
+	Route::get('/product/create', [App\Http\Controllers\User\ProductController::class, 'create'])->name('product.create');
+	Route::get('/product/edit/{id}', [App\Http\Controllers\User\ProductController::class, 'edit'])->name('product.edit');
+	Route::post('/product/store', [App\Http\Controllers\User\ProductController::class, 'store'])->name('product.store');
 });
 
