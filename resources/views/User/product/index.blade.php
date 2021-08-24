@@ -32,6 +32,7 @@
          </p>
          <div >
           <a href="{{ route('user.product.edit',$product->id) }}" class="btn btn-outline-warning">Edit</a>
+          <a href="{{ route('user.product.delete',$product->id) }}" class="btn btn-outline-danger">Delete</a>
          </div>
         </div>
        </div>
