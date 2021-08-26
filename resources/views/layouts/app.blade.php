@@ -60,6 +60,9 @@
                             @endif
                         @else
                             <li class="nav-item">
+                                <a class="nav-link" href="{{ route('user.myproduct') }}" >MyProduct</a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link" href="{{ route('user.product') }}" >Product</a>
                             </li>
                             <li class="nav-item dropdown">

@@ -120,4 +120,13 @@ class ProductController extends Controller {
 
     }
 
+    public function myproduct(){
+
+    	$id = Auth::user()->id;
+    	$products = Product::where('user_id', $id)->get();
+
+    	return view('user.myproduct.myproduct', compact('products'));
+
+    }
+
 }
